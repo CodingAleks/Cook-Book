@@ -1,5 +1,5 @@
 import {render} from '../../node_modules/lit-html/lit-html.js'
-import { loginContent, logout, registerContent } from './account.js';
+import { loginContent, logoutContent, registerContent } from './account.js';
 import { catalogContent } from './catalog.js';
 import { createRecipeContent } from './createRecipe.js';
 import { homeContent } from './home.js';
@@ -14,7 +14,10 @@ function renderMainContent(pageName) {
             'Login': loginContent,
             'Register': registerContent,
             'Create Recipe': createRecipeContent,
-            'Logout': logout,
+            'Logout': () => {
+                logoutContent();
+                return homeContent();
+            },
         }
 
         return pages[pageName]();

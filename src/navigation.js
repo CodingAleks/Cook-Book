@@ -17,10 +17,10 @@ function navigationComponent() {
         <div>
             <h1>My Cookbook</h1>
         </div>
-        <div id="navButtons" @click=${(e) => changeActivePage(e)}>
+        <div id="navButtons" @click=${(e) => changeActivePage(e.target)}>
             <p class=${navigationState['Home']}>Home</p>
             <p class=${navigationState['Catalog']}>Catalog</p>
-            ${isLoggedIn ? loggedNav() : registerNav()}
+            ${isLoggedIn.isLogged ? loggedNav() : registerNav()}
         </div>`
 }
 
@@ -37,17 +37,19 @@ function registerNav() {
     `;
 }
 
-function changeActivePage(e) {
-    if (e.target.tagName !== 'P' || e.target.className === 'active') {
+function changeActivePage(node) {
+    if (node.tagName !== 'P' || node.className === 'active') {
         return;
     }
 
+    const newActivePage = node.innerText;
     navigationState[activePage] = 'inactive';
-    activePage = e.target.innerText;
-    navigationState[activePage] = 'active';
+
+    activePage = newActivePage;
+    navigationState[newActivePage] = 'active';
 
     renderNavigation();
-    renderMainContent(activePage);
+    renderMainContent(newActivePage);
 }
 
 function renderNavigation() {
@@ -55,4 +57,4 @@ function renderNavigation() {
     render(navigationComponent(), navigationElement);
 }
 
-export { renderNavigation };
+export { renderNavigation, changeActivePage };
