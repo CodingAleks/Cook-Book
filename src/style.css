@@ -1,0 +1,44 @@
+/*Reset all*/
+* {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    display: flex;
+    /* Enables flexbox layout */
+    align-items: center;
+    /* Vertically centers items (optional) */
+    gap: 1rem;
+    /* Adds space between items (optional) */
+    max-width: 800px;
+    background-color: lightgray;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#navButtons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    -webkit-user-select: none;  /* Safari */
+    -ms-user-select: none;  /* IE 10 and IE 11 */
+    user-select: none;  /* Standard syntax */
+}
+
+#navButtons p {
+    padding: 8px 12px;
+}
+
+.inactive {
+    background-color: salmon;
+}
+
+.active {
+    background-color: indianred;
+}
+
+main {
+    background-color: gray;
+    max-width: 800px;
+}
